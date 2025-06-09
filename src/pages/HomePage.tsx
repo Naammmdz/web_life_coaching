@@ -1,56 +1,10 @@
-'use client';
-
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Brain, Target, Users, CheckCircle, Star, Quote } from 'lucide-react';
+import { ArrowRight, Brain, Target, Users, Star, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-
-const features = [
-  {
-    icon: Brain,
-    title: 'Science-Based Assessments',
-    description: 'MBTI, Big Five, DISC, and Enneagram tests backed by psychological research.',
-  },
-  {
-    icon: Target,
-    title: 'Personalized Coaching',
-    description: 'One-on-one sessions tailored to your unique personality and goals.',
-  },
-  {
-    icon: Users,
-    title: 'Expert Coaches',
-    description: 'Certified life coaches with years of experience in personal development.',
-  },
-];
-
-const assessments = [
-  {
-    name: 'MBTI Assessment',
-    description: 'Discover your personality type with the Myers-Briggs Type Indicator',
-    duration: '10-15 minutes',
-    insights: 'Communication style, decision-making preferences, career fit',
-  },
-  {
-    name: 'Big Five Personality',
-    description: 'Comprehensive analysis of the five major personality dimensions',
-    duration: '15-20 minutes', 
-    insights: 'Behavioral patterns, emotional stability, openness to experience',
-  },
-  {
-    name: 'DISC Profile',
-    description: 'Understand your behavioral style and workplace preferences',
-    duration: '10-15 minutes',
-    insights: 'Leadership style, team dynamics, communication preferences',
-  },
-  {
-    name: 'Enneagram',
-    description: 'Explore your core motivations and growth opportunities',
-    duration: '15-20 minutes',
-    insights: 'Core fears and desires, growth paths, relationship patterns',
-  },
-];
+import { useLanguageStore } from '@/store/language';
 
 const testimonials = [
   {
@@ -73,14 +27,61 @@ const testimonials = [
   },
 ];
 
-const stats = [
-  { number: '10,000+', label: 'Assessments Completed' },
-  { number: '98%', label: 'Client Satisfaction' },
-  { number: '500+', label: 'Lives Transformed' },
-  { number: '50+', label: 'Expert Coaches' },
-];
-
 export default function HomePage() {
+  const { t } = useLanguageStore();
+  
+  const features = [
+    {
+      icon: Brain,
+      title: t('scienceBasedAssessments'),
+      description: t('scienceBasedDescription'),
+    },
+    {
+      icon: Target,
+      title: t('personalizedCoaching'),
+      description: t('personalizedDescription'),
+    },
+    {
+      icon: Users,
+      title: t('expertCoachesTitle'),
+      description: t('expertCoachesDescription'),
+    },
+  ];
+
+  const assessments = [
+    {
+      name: t('mbtiAssessment'),
+      description: t('mbtiDescription'),
+      duration: '10-15 ' + t('minutes'),
+      insights: 'Communication style, decision-making preferences, career fit',
+    },
+    {
+      name: t('bigFivePersonality'),
+      description: t('bigFiveDescription'),
+      duration: '15-20 ' + t('minutes'),
+      insights: 'Behavioral patterns, emotional stability, openness to experience',
+    },
+    {
+      name: t('discProfile'),
+      description: t('discDescription'),
+      duration: '10-15 ' + t('minutes'),
+      insights: 'Leadership style, team dynamics, communication preferences',
+    },
+    {
+      name: t('enneagram'),
+      description: t('enneagramDescription'),
+      duration: '15-20 ' + t('minutes'),
+      insights: 'Core fears and desires, growth paths, relationship patterns',
+    },
+  ];
+  
+  const stats = [
+    { number: t('completedAssessments'), label: t('completedAssessmentsLabel') },
+    { number: t('successRate'), label: t('successRateLabel') },
+    { number: t('expertCoaches'), label: t('expertCoachesLabel') },
+    { number: t('countries'), label: t('countriesLabel') },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -93,23 +94,23 @@ export default function HomePage() {
             className="mx-auto max-w-4xl text-center"
           >
             <Badge variant="secondary" className="mb-4">
-              🎯 Discover Your True Potential
+              {t('discoverPotential')}
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl mb-6">
-              Unlock Your
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"> Potential</span>
+              {t('unlockYour')}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"> {t('potential')}</span>
             </h1>
             <p className="text-lg text-muted-foreground sm:text-xl max-w-2xl mx-auto mb-8">
-              Take scientifically-backed personality assessments and work with expert coaches to discover your strengths, overcome challenges, and achieve your life goals.
+              {t('heroDescription')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="text-lg px-8 py-6">
-                <Link href="/assessments">
-                  Start Your Assessment <ArrowRight className="ml-2 h-5 w-5" />
+                <Link to="/assessments">
+                  {t('startYourAssessment')} <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-                <Link href="/about">Learn More</Link>
+                <Link to="/about">{t('learnMore')}</Link>
               </Button>
             </div>
           </motion.div>
@@ -154,10 +155,10 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Why Choose LifePath Coaching?
+              {t('whyChooseUs')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We combine proven psychological assessments with expert coaching to help you achieve lasting personal growth.
+              {t('featuresDescription')}
             </p>
           </motion.div>
 
@@ -196,10 +197,10 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Choose Your Assessment
+              {t('ourAssessments')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Each assessment offers unique insights into different aspects of your personality and behavior.
+              {t('assessmentsDescription')}
             </p>
           </motion.div>
 
@@ -224,12 +225,12 @@ export default function HomePage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-medium mb-2">Key Insights:</h4>
+                        <h4 className="font-medium mb-2">{t('keyInsights')}:</h4>
                         <p className="text-sm text-muted-foreground">{assessment.insights}</p>
                       </div>
                       <Button asChild className="w-full">
-                        <Link href="/assessments">
-                          Start Assessment <ArrowRight className="ml-2 h-4 w-4" />
+                        <Link to="/assessments">
+                          {t('takeAssessment')} <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
                     </div>
@@ -304,12 +305,12 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-6">
-                <Link href="/assessments">
+                <Link to="/assessments">
                   Start Free Assessment <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 border-white text-white hover:bg-white hover:text-primary">
-                <Link href="/contact">Talk to a Coach</Link>
+                <Link to="/contact">Talk to a Coach</Link>
               </Button>
             </div>
           </motion.div>

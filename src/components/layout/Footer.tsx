@@ -1,7 +1,7 @@
-'use client';
-
-import Link from 'next/link';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { Brain, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { useLanguageStore } from '@/store/language';
 
 type SocialLink = {
   name: string;
@@ -44,13 +44,14 @@ const socialLinks: Array<{ name: string; Icon: React.ElementType; href: string }
 ];
 
 export function Footer() {
-  return (    <footer className="bg-secondary/30 border-t" role="contentinfo">
+  const { t } = useLanguageStore();
+  
+  return (<footer className="bg-secondary/30 border-t" role="contentinfo">
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           {/* Company Info */}
-          <div className="lg:col-span-2">
-            <Link 
-              href="/" 
+          <div className="lg:col-span-2">            <Link 
+              to="/" 
               className="flex items-center space-x-2 mb-4 hover:opacity-90 focus-visible:opacity-90 transition-opacity outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded"
               aria-label="LifeCoach Pro - Home"
             >
@@ -86,12 +87,11 @@ export function Footer() {
             </div>
           </div>          {/* Links */}
           <div>
-            <h3 className="font-semibold mb-4" id="footer-company">Company</h3>
-            <ul className="space-y-3" aria-labelledby="footer-company">
+            <h3 className="font-semibold mb-4" id="footer-company">Company</h3>            <ul className="space-y-3" aria-labelledby="footer-company">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
-                    href={link.href}
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded block w-fit"
                   >
                     {link.name}
@@ -100,12 +100,11 @@ export function Footer() {
               ))}
             </ul>
           </div>          <div>
-            <h3 className="font-semibold mb-4" id="footer-assessments">Assessments</h3>
-            <ul className="space-y-3" aria-labelledby="footer-assessments">
+            <h3 className="font-semibold mb-4" id="footer-assessments">Assessments</h3>            <ul className="space-y-3" aria-labelledby="footer-assessments">
               {footerLinks.assessments.map((link) => (
                 <li key={link.name}>
                   <Link
-                    href={link.href}
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded block w-fit"
                   >
                     {link.name}
@@ -114,12 +113,11 @@ export function Footer() {
               ))}
             </ul>
           </div>          <div>
-            <h3 className="font-semibold mb-4" id="footer-resources">Resources</h3>
-            <ul className="space-y-3" aria-labelledby="footer-resources">
+            <h3 className="font-semibold mb-4" id="footer-resources">Resources</h3>            <ul className="space-y-3" aria-labelledby="footer-resources">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
                   <Link
-                    href={link.href}
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded block w-fit"
                   >
                     {link.name}
@@ -128,12 +126,11 @@ export function Footer() {
               ))}
             </ul>
           </div>          <div>
-            <h3 className="font-semibold mb-4" id="footer-legal">Legal</h3>
-            <ul className="space-y-3" aria-labelledby="footer-legal">
+            <h3 className="font-semibold mb-4" id="footer-legal">Legal</h3>            <ul className="space-y-3" aria-labelledby="footer-legal">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
                   <Link
-                    href={link.href}
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded block w-fit"
                   >
                     {link.name}

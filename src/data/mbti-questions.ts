@@ -1,6 +1,7 @@
 import { MBTIQuestion } from '@/types';
+import { mbtiQuestionsVi } from './mbti-questions-vi';
 
-export const mbtiQuestions: MBTIQuestion[] = [
+const mbtiQuestionsEn: MBTIQuestion[] = [
   // Extraversion vs Introversion (E-I)
   {
     id: 1,
@@ -216,8 +217,7 @@ export const mbtiQuestions: MBTIQuestion[] = [
       { text: 'You have a clear plan', weight: 'J', value: 2 },
       { text: 'You can adapt as you go', weight: 'P', value: 2 },
     ],
-  },
-  {
+  },  {
     id: 20,
     category: 'JP',
     question: 'In your daily life, you:',
@@ -229,3 +229,14 @@ export const mbtiQuestions: MBTIQuestion[] = [
     ],
   },
 ];
+
+// Function to get questions based on language
+export const getMBTIQuestions = (language: 'en' | 'vi' = 'en'): MBTIQuestion[] => {
+  if (language === 'vi') {
+    return mbtiQuestionsVi;
+  }
+  return mbtiQuestionsEn;
+};
+
+// Keep the original export for backward compatibility
+export const mbtiQuestions = mbtiQuestionsEn;

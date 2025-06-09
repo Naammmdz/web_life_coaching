@@ -6,7 +6,7 @@ export interface Assessment {
   duration: string;
   questions: number;
   difficulty: 'Easy' | 'Medium' | 'Hard';
-  type: 'mbti' | 'big-five' | 'disc' | 'enneagram' | 'strengths';
+  type: 'mbti' | 'big-five' | 'disc' | 'enneagram' | 'strengths' | 'values' | 'life-balance' | 'eq' | 'leadership';
   isCompleted: boolean;
   completedAt?: string;
 }
@@ -177,6 +177,143 @@ export interface StrengthsResult {
   strengthsDetails: StrengthsTheme[];
   developmentSuggestions: string[];
   teamContributions: string[];
+}
+
+// Values Assessment Types
+export interface ValuesQuestion {
+  id: number;
+  question: string;
+  options: {
+    text: string;
+    value: string;
+    score: number;
+  }[];
+}
+
+export interface ValuesScores {
+  family: number;
+  career: number;
+  health: number;
+  relationships: number;
+  personal_growth: number;
+  financial_security: number;
+  creativity: number;
+  adventure: number;
+  spirituality: number;
+  service: number;
+}
+
+export interface ValuesResult {
+  userId: string;
+  testType: 'values';
+  completedAt: string;
+  scores: ValuesScores;
+  topValues: Array<{
+    value: keyof ValuesScores;
+    score: number;
+    interpretation: string;
+  }>;
+  recommendations: string[];
+}
+
+// Life Balance Assessment Types
+export interface LifeBalanceQuestion {
+  id: number;
+  question: string;
+  area: string;
+  options: {
+    text: string;
+    score: number;
+  }[];
+}
+
+export interface LifeBalanceScores {
+  work: number;
+  health: number;
+  relationships: number;
+  personal_growth: number;
+  finance: number;
+  recreation: number;
+  spirituality: number;
+  family: number;
+}
+
+export interface LifeBalanceResult {
+  userId: string;
+  testType: 'life-balance';
+  completedAt: string;
+  scores: LifeBalanceScores;
+  overallBalance: number;
+  strengths: string[];
+  areasForImprovement: string[];
+  recommendations: string[];
+  interpretation: string;
+}
+
+// Emotional Intelligence (EQ) Assessment Types
+export interface EQQuestion {
+  id: number;
+  question: string;
+  domain: string;
+  options: {
+    text: string;
+    score: number;
+  }[];
+}
+
+export interface EQScores {
+  self_awareness: number;
+  self_regulation: number;
+  motivation: number;
+  empathy: number;
+  social_skills: number;
+}
+
+export interface EQResult {
+  userId: string;
+  testType: 'eq';
+  completedAt: string;
+  scores: EQScores;
+  overallEQ: number;
+  strengths: string[];
+  developmentAreas: string[];
+  actionPlan: string[];
+  interpretation: string;
+  recommendations: string[];
+}
+
+// Leadership Style Assessment Types
+export interface LeadershipQuestion {
+  id: number;
+  question: string;
+  options: {
+    text: string;
+    style: string;
+    score: number;
+  }[];
+}
+
+export interface LeadershipScores {
+  autocratic: number;
+  democratic: number;
+  transformational: number;
+  servant: number;
+  situational: number;
+  charismatic: number;
+}
+
+export interface LeadershipResult {
+  userId: string;
+  testType: 'leadership';
+  completedAt: string;
+  scores: LeadershipScores;
+  primaryStyle: keyof LeadershipScores;
+  secondaryStyle: keyof LeadershipScores;
+  strengths: string[];
+  challenges: string[];
+  developmentTips: string[];
+  interpretation: string;
+  recommendations: string[];
 }
 
 // User Types

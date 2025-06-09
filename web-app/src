@@ -1,8 +1,0 @@
-web-app
-├── public
-│   └── _redirects
-├── src
-├── .gitignore
-├── netlify.toml
-├── package.json
-└── README.md

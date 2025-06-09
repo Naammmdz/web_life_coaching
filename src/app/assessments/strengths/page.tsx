@@ -120,7 +120,7 @@ export default function StrengthsTestPage() {
                     <div className="flex items-center gap-3">
                       <Target className="h-5 w-5 text-amber-600" />
                       <div>
-                        <h3 className="font-semibold">What You'll Discover</h3>
+                        <h3 className="font-semibold">What You&apos;ll Discover</h3>
                         <p className="text-sm text-muted-foreground">Your top 5 talent themes from 34 possible strengths</p>
                       </div>
                     </div>

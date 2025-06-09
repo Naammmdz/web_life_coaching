@@ -10,17 +10,43 @@ import { Progress } from '@/components/ui/progress';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { EnneagramScores } from '@/types';
+import { EnneagramScores, EnneagramType } from '@/types';
 import { 
   getPrimaryEnneagramType, 
   getEnneagramResultInterpretation,
   enneagramTypeInfo 
 } from '@/data/enneagram-questions';
 
+interface EnneagramInterpretationDirections {
+  growth: string;
+  stress: string;
+}
+
+interface EnneagramTopType {
+  type: EnneagramType;
+  name: string;
+  score: number;
+}
+
+interface EnneagramInterpretation {
+  primaryType: EnneagramType;
+  scores: EnneagramScores;
+  typeName: string;
+  description: string;
+  coreDesire: string;
+  basicFear: string;
+  keyMotivations: string[];
+  healthyTraits: string[];
+  averageTraits: string[];
+  unhealthyTraits: string[];
+  directions: EnneagramInterpretationDirections;
+  topTypes: EnneagramTopType[];
+}
+
 export default function EnneagramResultsPage() {
   const searchParams = useSearchParams();
   const [scores, setScores] = useState<EnneagramScores | null>(null);
-  const [interpretation, setInterpretation] = useState<any>(null);
+  const [interpretation, setInterpretation] = useState<EnneagramInterpretation | null>(null);
 
   useEffect(() => {
     // Get scores from URL parameters
@@ -234,17 +260,17 @@ export default function EnneagramResultsPage() {
               </p>
             </CardHeader>
             <CardContent>              <div className="grid md:grid-cols-2 gap-4">
-                {interpretation.wings.map((wing: any) => (
-                  <div key={wing.type} className="p-4 border rounded-lg">
+                {interpretation.topTypes.map((topType: EnneagramTopType) => (
+                  <div key={topType.type} className="p-4 border rounded-lg">
                     <div className="flex items-center gap-2 mb-2">
-                      <Badge variant="outline">Type {wing.type}</Badge>
-                      <span className="font-medium">{enneagramTypeInfo[wing.type as keyof typeof enneagramTypeInfo].name}</span>
+                      <Badge variant="outline">Type {topType.type}</Badge>
+                      <span className="font-medium">{enneagramTypeInfo[topType.type as keyof typeof enneagramTypeInfo].name}</span>
                     </div>
                     <p className="text-sm text-muted-foreground mb-2">
-                      Influence: {wing.score} points
+                      Influence: {topType.score} points
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {enneagramTypeInfo[wing.type as keyof typeof enneagramTypeInfo].description}
+                      {enneagramTypeInfo[topType.type as keyof typeof enneagramTypeInfo].description}
                     </p>
                   </div>
                 ))}

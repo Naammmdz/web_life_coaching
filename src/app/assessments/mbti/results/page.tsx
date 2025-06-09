@@ -18,12 +18,13 @@ import { Badge } from '@/components/ui/badge';
 import { useAssessmentStore } from '@/store/assessment';
 import { mbtiTypes } from '@/data/assessments';
 import { formatDate } from '@/lib/assessment-utils';
+import { AssessmentSession } from '@/types';
 
 export default function MBTIResultsPage() {
   const router = useRouter();
   const { currentSession, getCompletedSessions } = useAssessmentStore();
   const [mounted, setMounted] = useState(false);
-  const [resultSession, setResultSession] = useState<any>(null);
+  const [resultSession, setResultSession] = useState<AssessmentSession | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -282,7 +283,7 @@ ${mbtiType.careers?.map(career => `• ${career}`).join('\n') || 'N/A'}
         >
           <Card>
             <CardHeader>
-              <CardTitle>What's Next?</CardTitle>
+              <CardTitle>What&apos;s Next?</CardTitle>
               <CardDescription>
                 Take your personality insights to the next level
               </CardDescription>

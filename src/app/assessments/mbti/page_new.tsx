@@ -6,7 +6,7 @@ import { useAssessmentStore } from '@/store/assessment';
 import { QuestionCard } from '@/components/assessments/QuestionCard';
 import { ProgressBar } from '@/components/assessments/ProgressBar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { mbtiQuestions } from '@/data/mbti-questions';
 import { calculateMBTIResult } from '@/lib/assessment-utils';
 import { ArrowLeft } from 'lucide-react';

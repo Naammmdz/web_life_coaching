@@ -70,7 +70,7 @@ export default function StrengthsResultsPage() {
         <div className="text-center max-w-md">
           <h2 className="text-xl font-semibold mb-4">No Results Found</h2>
           <p className="text-muted-foreground mb-6">
-            We couldn't find your assessment results. Please take the assessment again.
+            We couldn&apos;t find your assessment results. Please take the assessment again.
           </p>
           <Link href="/assessments/strengths">
             <Button>Retake Assessment</Button>

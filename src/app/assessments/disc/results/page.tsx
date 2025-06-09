@@ -7,16 +7,26 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { DISCScores } from '@/types';
 import { getDISCResultInterpretation, discStyleInfo } from '@/data/disc-questions';
 
+interface DISCInterpretation {
+  primaryStyle: keyof DISCScores;
+  scores: DISCScores;
+  description: string;
+  workStyle: string[];
+  communication: string[];
+  motivators: string[];
+  stressors: string[];
+  strengths: string[];
+}
+
 function DISCResultsContent() {
   const searchParams = useSearchParams();
   const [scores, setScores] = useState<DISCScores | null>(null);
-  const [interpretation, setInterpretation] = useState<any>(null);
+  const [interpretation, setInterpretation] = useState<DISCInterpretation | null>(null);
 
   useEffect(() => {
     // Get scores from URL parameters

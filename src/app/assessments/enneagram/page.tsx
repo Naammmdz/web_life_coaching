@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAssessmentStore } from '@/store/assessment';
 import { enneagramQuestions, calculateEnneagramScores } from '@/data/enneagram-questions';
-import { AssessmentAnswer } from '@/types';
+import { AssessmentAnswer, EnneagramType } from '@/types';
 
 type Assessment = 'intro' | 'questions';
 
@@ -139,7 +139,7 @@ export default function EnneagramTestPage() {
               
               <CardContent className="space-y-6">
                 <div className="bg-muted/30 rounded-lg p-6">
-                  <h3 className="font-semibold text-lg mb-3">What you'll discover:</h3>
+                  <h3 className="font-semibold text-lg mb-3">What you&apos;ll discover:</h3>
                   <ul className="space-y-2 text-muted-foreground">
                     <li className="flex items-center gap-2">
                       <Check className="h-4 w-4 text-green-600" />
@@ -241,7 +241,7 @@ export default function EnneagramTestPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  {currentQ.options.map((option: any, index: number) => (
+                  {currentQ.options.map((option: { text: string; type: EnneagramType; }, index: number) => (
                     <motion.button
                       key={index}
                       onClick={() => handleAnswer(index)}

@@ -20,7 +20,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { getBigFiveResultInterpretation } from '@/data/big-five-questions';
-import { BigFiveScores } from '@/types';
+import { BigFiveScores, BigFiveResult } from '@/types';
 import Link from 'next/link';
 
 const factorInfo = {
@@ -65,7 +65,7 @@ export default function BigFiveResultsPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [scores, setScores] = useState<BigFiveScores | null>(null);
-  const [interpretation, setInterpretation] = useState<any>(null);
+  const [interpretation, setInterpretation] = useState<BigFiveResult['interpretation'] | null>(null);
 
   useEffect(() => {
     // Get scores from URL parameters
@@ -103,7 +103,7 @@ Generated on: ${new Date().toLocaleDateString()}
 Your Personality Profile:
 -----------------------
 
-${Object.entries(interpretation).map(([factor, data]: [string, any]) => {
+${Object.entries(interpretation).map(([factor, data]: [string, BigFiveResult['interpretation'][keyof BigFiveResult['interpretation']]]) => {
   const factorName = factorInfo[factor as keyof typeof factorInfo].name;
   return `
 ${factorName}: ${data.score}% (${data.level})
@@ -198,7 +198,7 @@ Remember: Personality is complex and multifaceted. These results represent tende
 
           {/* Personality Factors */}
           <div className="grid gap-6">
-            {Object.entries(interpretation).map(([factor, data]: [string, any]) => {
+            {Object.entries(interpretation).map(([factor, data]: [string, BigFiveResult['interpretation'][keyof BigFiveResult['interpretation']]]) => {
               const info = factorInfo[factor as keyof typeof factorInfo];
               const IconComponent = info.icon;
               

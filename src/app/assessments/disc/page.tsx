@@ -87,7 +87,6 @@ export default function DiscTestPage() {
     }));
 
     const scores = calculateDISCScores(scoresInput);
-    const interpretation = getDISCResultInterpretation(scores);
 
     // Navigate to results with scores
     const searchParams = new URLSearchParams();

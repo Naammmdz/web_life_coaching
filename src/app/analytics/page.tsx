@@ -69,7 +69,7 @@ export default function AnalyticsPage() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
         >
-          {stats.map((stat, index) => (
+          {stats.map((stat) => (
             <Card key={stat.label}>
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
